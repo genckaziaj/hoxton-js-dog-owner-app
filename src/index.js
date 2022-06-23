@@ -20,3 +20,79 @@ Challenge
 You might have noticed there's a plus button at the beginning of the top row. Add the behaviour to it. When clicked, it should replace the main card with a form to add a new dog to the list. 
 You'll find a template for the form on the HTML page. Once the form is submitted, add the new dog to the beginning of the list, right next to the plus button. 
 */
+
+console.log(data);
+
+let dogList = document.querySelector(".dogs-list");
+let dogSection = document.querySelector(".main__dog-section");
+
+function addDogListItem(dog) {
+  let liEl = document.createElement("li");
+  liEl.className = "dogs-list__button";
+  liEl.textContent = dog.name;
+  dogList.append(liEl);
+  liEl.addEventListener("click", function () {
+    displayDog(dog);
+  });
+}
+
+for (let dog of data) {
+  addDogListItem(dog);
+}
+
+function displayDog(dog) {
+  dogSection.textContent = "";
+  // <h2>Mr. Bonkers</h2>
+  // <img
+  // src="https://curriculum-content.s3.amazonaws.com/js/woof-woof/dog_1.jpg"
+  // alt=""
+  // />
+  // <div class="main__dog-section__desc">
+  //   <h3>Bio</h3>
+  //    <p>
+  //    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum,
+  //   minima voluptates libero cumque rerum consequatur optio aliquid sint
+  //   eum maxime illo laborum omnis quo ab rem cupiditate nulla
+  //   perspiciatis ipsum!
+  //   </p>
+  // </div>
+  // <p><em>Is naughty?</em> yes!</p>
+  // <button class="main__dog-section__btn">Good dog!</button>
+
+  let h2El = document.createElement("h2");
+  h2El.textContent = dog.name;
+  let imgEl = document.createElement("img");
+  imgEl.src = dog.image;
+
+  let dogDescription = document.createElement("div");
+  dogDescription.className = "main__dog-section__desc";
+  let h3El = document.createElement("h3");
+  h3El.textContent = "Bio";
+  let pEl = document.createElement("p");
+  pEl.textContent = dog.bio;
+  dogDescription.append(h3El, pEl);
+
+  let pQuestionEl = document.createElement("p");
+  pQuestionEl.innerHTML = `<em>Is naughty?</em> ${
+    dog.isGoodDog ? "Yes!" : "No!"
+  }!`;
+  let buttonEl = document.createElement("button");
+  buttonEl.className = "main__dog-section__btn";
+  buttonEl.textContent = dog.isGoodDog ? "Good dog!" : "Bad dog!";
+
+  dogSection.append(h2El, imgEl, dogDescription, pQuestionEl, buttonEl);
+
+  buttonEl.addEventListener("click", function () {
+    if (dog.isGoodDog === true) {
+      dog.isGoodDog = false;
+      buttonEl.textContent = "Bad dog!";
+      pQuestionEl.innerHTML = `<em>Is naughty?</em> No!`;
+      console.log(dog.isGoodDog);
+    } else if (dog.isGoodDog === false) {
+      dog.isGoodDog = true;
+      buttonEl.textContent = "Good dog!";
+      pQuestionEl.innerHTML = `<em>Is naughty?</em> Yes!`;
+      console.log(dog.isGoodDog);
+    }
+  });
+}
