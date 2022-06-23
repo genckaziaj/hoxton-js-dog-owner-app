@@ -15,10 +15,6 @@ Instructions
 Tips
 - Take advantage of scope in JS to have access to the data you need
 - Remember you can add event listeners to any element on the page
-
-Challenge
-You might have noticed there's a plus button at the beginning of the top row. Add the behaviour to it. When clicked, it should replace the main card with a form to add a new dog to the list. 
-You'll find a template for the form on the HTML page. Once the form is submitted, add the new dog to the beginning of the list, right next to the plus button. 
 */
 
 console.log(data);
@@ -87,12 +83,10 @@ function displayDog(dog) {
       dog.isGoodDog = false;
       buttonEl.textContent = "Bad dog!";
       pQuestionEl.innerHTML = `<em>Is naughty?</em> No!`;
-      console.log(dog.isGoodDog);
     } else if (dog.isGoodDog === false) {
       dog.isGoodDog = true;
       buttonEl.textContent = "Good dog!";
       pQuestionEl.innerHTML = `<em>Is naughty?</em> Yes!`;
-      console.log(dog.isGoodDog);
     }
   });
 }
